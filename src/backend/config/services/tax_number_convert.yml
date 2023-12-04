@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    
+    App\Infrastructure\Service\Tax\FormatToRegConverter\:
+        resource: '%kernel.project_dir%/src/Infrastructure/Service/Tax/FormatToRegConverter'
+    
+    _instanceof:
+        App\Infrastructure\Service\Tax\FormatToRegConverter\ConvertStrategy\ConvertStrategyAbstract:
+            tags: [ 'app.tax-number_convert_strategy' ]
+    
+    App\Infrastructure\Service\Tax\FormatToRegConverter\FormatToRegConverter:
+        arguments:
+            $handlers: !tagged_iterator app.tax-number_convert_strategy

@@ -1,0 +1,65 @@
+version: "3"
+
+services:
+
+  nginx:
+    build:
+      context: ./docker/images/nginx
+      dockerfile: Dockerfile
+    environment:
+      TZ: $TZ
+    restart: unless-stopped
+    depends_on:
+      - php
+    ports:
+      - $PORT:80
+    volumes:
+      - "./volumes/logs/nginx:/var/log/nginx"
+      - "./src/backend:/var/www/site"
+
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/images/symfony_php/Dockerfile
+      args:
+        SYMFONY_VERSION: ${SYMFONY_VERSION:-}
+        SKELETON: ${SKELETON:-symfony/skeleton}
+        STABILITY: ${STABILITY:-stable}
+    restart: unless-stopped
+    volumes:
+      - php_socket:/var/run/php
+    expose:
+      - "9000"
+    healthcheck:
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://${DB_USER:-starter}:${DB_PASS:-ChangeMe}@db:5432/${DB_NAME:-starter}?serverVersion=13&charset=utf8
+
+  db:
+    build:
+      context: ./docker/images/postgres
+      dockerfile: Dockerfile
+    expose:
+      - "5432"
+    ports:
+      - 127.0.0.1:$DB_PORT:5432
+    volumes:
+      - "./volumes/postgresql/data:/var/lib/postgresql/data/pgdata"
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_DB: $DB_NAME
+      POSTGRES_USER: $DB_USER
+      POSTGRES_PASSWORD: $DB_PASS
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U${DB_USER}" ]
+      interval: 3s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  php_socket:

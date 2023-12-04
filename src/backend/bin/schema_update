@@ -1,0 +1,4 @@
+#!/bin/sh
+
+php bin/console doctrine:schema:update --force
+APP_ENV=test php bin/console doctrine:schema:update --force

@@ -1,0 +1,31 @@
+services:
+    App\Infrastructure\RequestData\ObjectHandler\:
+        resource: '%kernel.project_dir%/src/Infrastructure/RequestData/ObjectHandler'
+        exclude: '%kernel.project_dir%/src/Infrastructure/RequestData/ObjectHandler/{Exception}'
+
+    Omasn\ObjectHandler\HandleDriverInterface:
+        class: Omasn\ObjectHandler\Drivers\PublicPropertyDriver
+
+    Omasn\ObjectHandler\ObjectHandlerInterface:
+        class: Omasn\ObjectHandler\ObjectHandler
+        autowire: true
+        arguments:
+            - [
+                '@Omasn\ObjectHandler\HandleTypes\HandleStringType',
+                '@Omasn\ObjectHandler\HandleTypes\HandleIntType'
+            ]
+
+    Omasn\ObjectHandler\HandleTypes\HandleStringType:
+        public: true
+    Omasn\ObjectHandler\HandleTypes\HandleIntType:
+        public: true
+
+    # Data Transfer
+    App\DataTransfer\HandleTypes\HandleDataTransferType:
+        public: true
+        arguments:
+          ['@Omasn\ObjectHandler\ObjectHandlerInterface']
+    App\DataTransfer\HandleTypes\HandleObjectCollectionType:
+        public: true
+        arguments:
+          ['@Omasn\ObjectHandler\ObjectHandlerInterface']

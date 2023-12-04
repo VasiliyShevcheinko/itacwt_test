@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    
+    App\Infrastructure\Service\Payment\:
+        resource: '%kernel.project_dir%/src/Infrastructure/Service/Payment'
+    
+    _instanceof:
+        App\Infrastructure\Service\Payment\PaymentStrategy\PaymentAbstract:
+            tags: [ 'app.payment_strategy' ]
+    
+    App\Infrastructure\Service\Payment\PaymentService:
+        arguments:
+            $handlers: !tagged_iterator app.payment_strategy

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+php bin/console doctrine:fixtures:load -qvvv
+bin/console load:tax-number:format

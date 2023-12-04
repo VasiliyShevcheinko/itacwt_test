@@ -1,0 +1,13 @@
+App\RequestData\PurchaseData:
+  properties:
+    product:
+      -   Positive:
+            message: Номер продукта не может быть отрицательным
+      -   App\Infrastructure\Validator\Constraints\ProductExistenceConstraint: ~
+      -   App\Infrastructure\Validator\Constraints\ProductAvailabilityConstraint: ~
+    taxNumber:
+      -   App\Infrastructure\Validator\Constraints\TaxNumberFormatConstraint: ~
+    couponCode:
+      -   App\Infrastructure\Validator\Constraints\CouponCodeConstraint: ~
+    paymentProcessor:
+      -   App\Infrastructure\Validator\Constraints\PaymentProcessorConstraint: ~

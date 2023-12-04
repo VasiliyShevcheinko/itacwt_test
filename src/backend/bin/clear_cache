@@ -1,0 +1,4 @@
+#!/bin/sh
+
+php bin/console cache:clear
+#php bin/console doctrine:cache:clear-result

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+php bin/console cache:pool:clear cache.global_clearer --env=test
+APP_ENV=test bin/db_recreate
+APP_ENV=test bin/refresh_db
+bin/console doctrine:schema:validate --env=test || (bin/console doctrine:schema:update --dump-sql --env=test && exit 1)
+#php bin/console doctrine:fixtures:load -qvvv --env=test
+APP_ENV=test bin/initial_data-set
+
+
+bin/phpunit $@

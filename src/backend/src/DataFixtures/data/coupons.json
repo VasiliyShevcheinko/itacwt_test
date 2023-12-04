@@ -1,0 +1,32 @@
+[
+  {
+    "code": "DE12",
+    "type": "percent",
+    "discount": 15
+  },
+  {
+    "code": "DE13",
+    "type": "fixed",
+    "discount": 20
+  },
+  {
+    "code": "A13",
+    "type": "fixed",
+    "discount": 5
+  },
+  {
+    "code": "A1",
+    "type": "percent",
+    "discount": 25.5
+  },
+  {
+    "code": "B5",
+    "type": "fixed",
+    "discount": 10.5
+  },
+  {
+    "code": "B6",
+    "type": "percent",
+    "discount": 12.5
+  }
+]

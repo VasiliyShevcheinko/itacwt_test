@@ -1,0 +1,16 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to an undefined property Symfony\\\\Component\\\\Validator\\\\Constraint\\:\\:\\$message\\.$#"
+			count: 2
+			path: src/Infrastructure/Validator/TaxNumberFormatValidator.php
+
+		-
+			message: "#^Offset 'message' does not exist on array\\{data\\: array, errors\\: array\\}\\.$#"
+			count: 1
+			path: tests/ApiTestCase.php
+
+		-
+			message: "#^Offset 'type' does not exist on array\\{data\\: array, errors\\: array\\}\\.$#"
+			count: 1
+			path: tests/ApiTestCase.php

@@ -1,0 +1,18 @@
+[
+  {
+    "country": "Germany",
+    "format": "DEXXXXXXXXX"
+  },
+  {
+    "country": "Italy",
+    "format": "ITXXXXXXXXXXX"
+  },
+  {
+    "country": "Greece",
+    "format": "GRXXXXXXXXX"
+  },
+  {
+    "country": "France",
+    "format": "FRYYXXXXXXXXX"
+  }
+]

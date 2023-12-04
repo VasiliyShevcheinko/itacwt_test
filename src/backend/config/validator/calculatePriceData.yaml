@@ -1,0 +1,10 @@
+App\RequestData\CalculatePriceData:
+  properties:
+    product:
+      -   Positive:
+            message: Номер продукта не может быть отрицательным
+      -   App\Infrastructure\Validator\Constraints\ProductExistenceConstraint: ~
+    taxNumber:
+      -   App\Infrastructure\Validator\Constraints\TaxNumberFormatConstraint: ~
+    couponCode:
+      -   App\Infrastructure\Validator\Constraints\CouponCodeConstraint: ~

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Iphone",
+    "price": 150,
+    "count": 5
+  },
+  {
+    "name": "Наушники",
+    "price": 120,
+    "count": 3
+  },
+  {
+    "name": "Чехол",
+    "price": 110,
+    "count": 15
+  }
+]

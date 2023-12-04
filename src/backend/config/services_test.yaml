@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        autowire: true
+
+    App\DataFixtures\Fixtures\:
+        resource: '../src/DataFixtures/Fixtures/*'
+        tags:
+            - { name: "doctrine.fixture.orm" }

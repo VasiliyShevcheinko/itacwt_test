@@ -1,0 +1,19 @@
+#!/bin/bash
+
+ln_if_exist () {
+    if [ -e "$2" ]; then
+      if [[ -L "$2" ]]; then
+        # its a symlink
+        rm "$2"
+        ln -s "$1" "$2"
+        print_style "Link $2 successful replaced\n"
+      else
+        # its a file
+        print_style "File $2 is not symlink\n" "danger"
+        exit 1
+      fi
+    else
+        ln -s "$1" "$2"
+        print_style "Link $2\n"
+    fi
+}

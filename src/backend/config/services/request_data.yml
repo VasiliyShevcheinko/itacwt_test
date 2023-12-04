@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        # ... be sure autowiring is enabled
+        autowire: true
+
+    App\Infrastructure\RequestData\:
+        resource: '%kernel.project_dir%/src/Infrastructure/RequestData'
+        exclude: '%kernel.project_dir%/src/Infrastructure/RequestData/{ObjectHandler}'
+
+    App\Infrastructure\RequestData\RequestDataResolver:
+        autoconfigure: true
+        tags:
+            - { name: controller.request_value_resolver, priority: 50 }
