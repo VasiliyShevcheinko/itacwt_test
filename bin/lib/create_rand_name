@@ -1,7 +1,0 @@
-#!/bin/bash
-
-## Using: create_rand_name 20
-create_rand_name () {
-    local length=$1
-    head /dev/urandom | tr -dc '[:lower:]' | head -c "$length" ; echo ''
-}

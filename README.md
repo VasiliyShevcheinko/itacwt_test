@@ -1,27 +1,7 @@
-### Установка и запуск проекта:
-
-```sh
-make install
-```
-### Запуск тестов:
-
-```sh
-make tests
-```
-
 ### Обновление форматов налоговых номеров:
 Чтобы обновить форматы налоговых номеров необходимо изменить/добавить формат
-в файл `src/backend/data/tax_number_format.json`
-и выполниить команду:
-
-```sh
-make sf c=load:tax-number:format
-```
-или зайти в php контейнер с помощью команды:
-```sh
-make sh
-```
-и выполнить в контейнере команду:
+в файл `src/backend/data/tax_number_format.json`,
+зайти в php контейнер и выполнить команду:
 ```
 bin/console load:tax-number:format 
 ```

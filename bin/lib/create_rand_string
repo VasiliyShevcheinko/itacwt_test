@@ -1,7 +1,0 @@
-#!/bin/bash
-
-## Using: create_rand_string 20
-create_rand_string () {
-    local length=$1
-    head /dev/urandom | tr -dc A-Za-z0-9 | head -c "$length" ; echo ''
-}

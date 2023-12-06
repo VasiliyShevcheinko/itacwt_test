@@ -1,8 +1,0 @@
-#!/bin/bash
-
-ENV_PATH=".env"
-DB_PORT=$(grep '^DB_PORT=' "$ENV_PATH" | cut -f 2 -d '=')
-DB_USER=$(grep '^DB_USER=' "$ENV_PATH" | cut -f 2 -d '=')
-DB_NAME=$(grep '^DB_NAME=' "$ENV_PATH" | cut -f 2 -d '=')
-CONTAINER_NAME=$(docker-compose ps | grep ":$DB_PORT" | awk '{print $1;}')
-gunzip < "$1" | docker exec -i "$CONTAINER_NAME" psql -U "$DB_USER" -d "$DB_NAME"
